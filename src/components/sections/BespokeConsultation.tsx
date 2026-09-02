@@ -1,7 +1,5 @@
-
-import { motion } from "framer-motion";
+import { useState } from "react";
 import { ALL_ASSETS } from "../../data/assets";
-import { aeroSectionFold, squashHover, squashTap } from "../../utils/motion";
 
 export default function BespokeConsultation() {
   const titaniumBillet = ALL_ASSETS[1];
@@ -19,22 +17,13 @@ export default function BespokeConsultation() {
   };
 
   return (
-    <motion.section
-      id="commission"
-      variants={aeroSectionFold}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      className="py-20 md:py-32 bg-[#F9F7F2] border-t border-[#0F172A]/8"
-    >
+    <section id="commission" className="py-20 md:py-32 bg-[#F9F7F2] border-t border-[#0F172A]/8">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-center">
-          
-          {/* Left Column: Titanium Spec */}
           <div className="lg:col-span-5 space-y-5">
             <div className="space-y-2.5">
               <span className="font-mono text-[9px] font-bold uppercase tracking-[0.25em] text-[#7E7467]">
-                06 // BESPOKE COMMISSION
+                BESPOKE COMMISSION
               </span>
               <h2 className="font-serif text-3xl sm:text-5xl font-normal text-[#0F172A] tracking-tight">
                 Commission your sanctuary.
@@ -56,7 +45,6 @@ export default function BespokeConsultation() {
             </div>
           </div>
 
-          {/* Right Column: Portal */}
           <div className="lg:col-span-7">
             <div className="p-7 sm:p-10 rounded-2xl bg-white shadow-lg border border-[#0F172A]/8 space-y-5">
               {submitted ? (
@@ -96,7 +84,7 @@ export default function BespokeConsultation() {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="e.g. vance@office.com"
+                        placeholder="e.g. bolexadeoye2020@gmail.com"
                         className="w-full h-11 rounded-lg bg-[#F9F7F2] border border-[#0F172A]/15 px-3.5 font-sans text-xs text-[#0F172A] outline-none focus:border-[#0F172A]"
                       />
                     </div>
@@ -130,25 +118,22 @@ export default function BespokeConsultation() {
                     />
                   </div>
 
-                  <motion.button
+                  <button
                     type="submit"
-                    whileHover={squashHover}
-                    whileTap={squashTap}
-                    className="w-full py-3.5 rounded-xl bg-[#0F172A] text-white font-sans text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#1E293B] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                    className="w-full py-3.5 rounded-xl bg-[#0F172A] text-white font-sans text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#1E293B] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
                   >
                     <span>Transmit Commission Brief</span>
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#D4C5B9]">
                       <line x1="5" y1="12" x2="19" y2="12" />
                       <polyline points="12 5 19 12 12 19" />
                     </svg>
-                  </motion.button>
+                  </button>
                 </form>
               )}
             </div>
           </div>
-
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

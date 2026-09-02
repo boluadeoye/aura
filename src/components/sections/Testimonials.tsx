@@ -1,6 +1,4 @@
-
-import { motion, AnimatePresence } from "framer-motion";
-import { aeroSectionFold } from "../../utils/motion";
+import { useState } from "react";
 
 const TESTIMONIALS = [
   {
@@ -34,23 +32,14 @@ export default function Testimonials() {
   const active = TESTIMONIALS[activeIndex];
 
   return (
-    <motion.section
-      id="patrons"
-      variants={aeroSectionFold}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      className="py-20 md:py-32 bg-[#F9F7F2] border-t border-[#0F172A]/8"
-    >
+    <section id="patrons" className="py-20 md:py-32 bg-[#F9F7F2] border-t border-[#0F172A]/8">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-14 space-y-12 md:space-y-16">
-        
-        {/* Section Heading */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 max-w-xl">
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0F172A]" />
               <span className="font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.25em] text-[#7E7467]">
-                05 // PATRON COMMISSIONS
+                04 // PATRON COMMISSIONS
               </span>
             </div>
             <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl font-normal text-[#0F172A] tracking-tight">
@@ -62,26 +51,14 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Dialogue Card Presentation */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
-          {/* Active Quote Dialogue Showcase */}
           <div className="lg:col-span-8 p-8 sm:p-12 md:p-16 rounded-3xl bg-[#F2EEE5]/60 border border-[#0F172A]/8 flex flex-col justify-between space-y-8 shadow-sm">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active.id}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.4 }}
-                className="space-y-6"
-              >
-                <span className="font-serif text-6xl text-[#D4C5B9] leading-none block">“</span>
-                <p className="font-serif italic text-xl sm:text-3xl md:text-4xl text-[#0F172A] leading-snug font-normal -mt-6">
-                  {active.quote}
-                </p>
-              </motion.div>
-            </AnimatePresence>
+            <div className="space-y-6">
+              <span className="font-serif text-6xl text-[#D4C5B9] leading-none block">“</span>
+              <p className="font-serif italic text-xl sm:text-3xl md:text-4xl text-[#0F172A] leading-snug font-normal -mt-6">
+                {active.quote}
+              </p>
+            </div>
 
             <div className="pt-6 border-t border-[#0F172A]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-0.5">
@@ -94,14 +71,11 @@ export default function Testimonials() {
             </div>
           </div>
 
-          {/* Patron Selectors */}
           <div className="lg:col-span-4 flex flex-col justify-between gap-3">
             {TESTIMONIALS.map((t, idx) => (
-              <motion.button
+              <button
                 key={t.id}
                 onClick={() => setActiveIndex(idx)}
-                whileHover={{ x: 4 }}
-                whileTap={{ scale: 0.98 }}
                 className={`p-5 rounded-2xl text-left transition-all duration-300 border cursor-pointer flex-1 flex flex-col justify-center space-y-1 ${
                   activeIndex === idx
                     ? "bg-[#0F172A] text-white border-[#0F172A] shadow-md translate-x-1"
@@ -115,13 +89,11 @@ export default function Testimonials() {
                 <p className={`font-sans text-[11px] truncate ${activeIndex === idx ? "text-white/70" : "text-[#7E7467]"}`}>
                   {t.office}
                 </p>
-              </motion.button>
+              </button>
             ))}
           </div>
-
         </div>
-
       </div>
-    </motion.section>
+    </section>
   );
 }

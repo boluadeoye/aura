@@ -1,5 +1,4 @@
-
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
 
 interface GForceCardProps {
   children: React.ReactNode;
@@ -28,20 +27,18 @@ export default function GForceCard({ children, className = "", tiltIntensity = 1
   };
 
   return (
-    <motion.div
+    <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      animate={{
-        rotateX: tilt.rotateX,
-        rotateY: tilt.rotateY,
-        scale: tilt.scale,
+      style={{
+        transform: `perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg) scale(${tilt.scale})`,
+        transition: "transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+        willChange: "transform",
       }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      style={{ perspective: "1000px", willChange: "transform" }}
       className={className}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

@@ -1,5 +1,4 @@
-
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
 import { ALL_ASSETS } from "../../data/assets";
 
 export default function HorizonGallery() {
@@ -27,8 +26,6 @@ export default function HorizonGallery() {
   return (
     <section id="gallery" className="py-20 md:py-32 bg-[#F2EEE5]/50 border-t border-[#0F172A]/8 overflow-hidden">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-14 space-y-12">
-        
-        {/* Section Header & Interactive Controls */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 max-w-xl">
             <div className="flex items-center gap-2">
@@ -42,7 +39,6 @@ export default function HorizonGallery() {
             </h2>
           </div>
 
-          {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-3">
             <div className="flex items-center gap-1.5 p-1 bg-[#F9F7F2] rounded-full border border-[#0F172A]/10">
               {categories.map((cat) => (
@@ -60,11 +56,8 @@ export default function HorizonGallery() {
               ))}
             </div>
 
-            {/* Navigation Controls */}
             <div className="hidden sm:flex items-center gap-2">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+              <button
                 onClick={() => scroll("left")}
                 className="w-9 h-9 rounded-full bg-[#F9F7F2] border border-[#0F172A]/10 flex items-center justify-center text-[#0F172A] hover:bg-[#0F172A] hover:text-white transition-colors cursor-pointer"
                 aria-label="Scroll left"
@@ -73,10 +66,8 @@ export default function HorizonGallery() {
                   <line x1="19" y1="12" x2="5" y2="12" />
                   <polyline points="12 19 5 12 12 5" />
                 </svg>
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+              </button>
+              <button
                 onClick={() => scroll("right")}
                 className="w-9 h-9 rounded-full bg-[#F9F7F2] border border-[#0F172A]/10 flex items-center justify-center text-[#0F172A] hover:bg-[#0F172A] hover:text-white transition-colors cursor-pointer"
                 aria-label="Scroll right"
@@ -85,56 +76,47 @@ export default function HorizonGallery() {
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />
                 </svg>
-              </motion.button>
+              </button>
             </div>
           </div>
         </div>
 
-        {/* ─── SLIDING MASONRY STRIP WITH DRAG PHYSICS ─────────────────── */}
         <div
           ref={carouselRef}
           className="flex gap-6 overflow-x-auto pb-6 pt-2 scroll-smooth no-scrollbar snap-x snap-mandatory"
           style={{ scrollbarWidth: "none" }}
         >
-          <AnimatePresence>
-            {filteredAssets.map((asset, idx) => (
-              <motion.div
-                key={asset.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 200, damping: 18 }}
-                className="w-[280px] sm:w-[340px] md:w-[400px] shrink-0 snap-start space-y-4 group"
-              >
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#F2EEE5] border border-[#0F172A]/8 shadow-sm">
-                  <img
-                    src={asset.src}
-                    alt={asset.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#F9F7F2]/90 backdrop-blur-md font-mono text-[8px] font-bold uppercase tracking-wider text-[#0F172A]">
-                    [ ARCHIVE // 0{idx + 1} ]
-                  </div>
+          {filteredAssets.map((asset, idx) => (
+            <div
+              key={asset.id}
+              className="w-[280px] sm:w-[340px] md:w-[400px] shrink-0 snap-start space-y-4 group"
+            >
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#F2EEE5] border border-[#0F172A]/8 shadow-sm">
+                <img
+                  src={asset.src}
+                  alt={asset.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#F9F7F2]/90 backdrop-blur-md font-mono text-[8px] font-bold uppercase tracking-wider text-[#0F172A]">
+                  [ ARCHIVE // 0{idx + 1} ]
                 </div>
+              </div>
 
-                <div className="space-y-1">
-                  <span className="font-mono text-[8px] uppercase tracking-widest text-[#7E7467]">
-                    {asset.subtitle}
-                  </span>
-                  <h4 className="font-serif text-lg font-semibold text-[#0F172A]">
-                    {asset.title}
-                  </h4>
-                  <p className="font-sans text-xs text-[#7E7467] leading-relaxed">
-                    {asset.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+              <div className="space-y-1">
+                <span className="font-mono text-[8px] uppercase tracking-widest text-[#7E7467]">
+                  {asset.subtitle}
+                </span>
+                <h4 className="font-serif text-lg font-semibold text-[#0F172A]">
+                  {asset.title}
+                </h4>
+                <p className="font-sans text-xs text-[#7E7467] leading-relaxed">
+                  {asset.description}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
-
       </div>
     </section>
   );
