@@ -1,4 +1,4 @@
-import React from "react";
+
 import { motion } from "framer-motion";
 import { ALL_ASSETS } from "../../data/assets";
 import { aeroSectionFold } from "../../utils/motion";

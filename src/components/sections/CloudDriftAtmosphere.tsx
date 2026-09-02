@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+
 import { useInView, animate } from "framer-motion";
 import { ALL_ASSETS } from "../../data/assets";
 
