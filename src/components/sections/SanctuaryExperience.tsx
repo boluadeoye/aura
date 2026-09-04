@@ -1,4 +1,3 @@
-import React from "react";
 import { ALL_ASSETS } from "../../data/assets";
 
 export default function SanctuaryExperience() {
@@ -74,7 +73,7 @@ export default function SanctuaryExperience() {
                   alt={morningSun.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute top-3 right-3 px-2 py-0.5 rounded-md bg-[#0F172A]/80 backdrop-blur-md font-mono text-[8px] text-white uppercase tracking-wider">
+                <div className="absolute top-4 right-4 px-3 py-1 rounded-md bg-[#0F172A]/80 backdrop-blur-md font-mono text-[8px] text-white uppercase tracking-wider">
                   Photon Ingress
                 </div>
               </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import { ALL_ASSETS } from "../../data/assets";
 
 export default function FleetShowcase() {
@@ -75,7 +74,7 @@ export default function FleetShowcase() {
                 alt={nacelle.title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#F9F7F2]/90 backdrop-blur-md font-mono text-[8px] font-bold uppercase tracking-wider text-[#0F172A]">
+              <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-md bg-[#F9F7F2]/90 backdrop-blur-md font-mono text-[8px] font-bold uppercase tracking-wider text-[#0F172A]">
                 [ 03 // NACELLE ]
               </div>
             </div>
